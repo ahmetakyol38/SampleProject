@@ -1,0 +1,46 @@
+﻿@model SampleProject.WebUI.Models.ProductCreateViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div class="py-5 text-center">
+    <h2>Yeni Ürün Ekleme Formu</h2>
+    <p class="lead">Lütfen ürün bilgilerini giriniz</p>
+</div>
+
+<div class="row">
+    <div class="col-md-12 order-md-1">
+        @using (Html.BeginForm())
+        {
+            <div class="mb-3">
+                <label>Ürün Adı</label>
+                @Html.TextBoxFor(model => model.Product.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Product.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                <label>Fiyatı</label>
+                @Html.TextBoxFor(model => model.Product.Price, new { @class = "form-control", @type = "number" })
+                @Html.ValidationMessageFor(model => model.Product.Price, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                <label>Stok Adeti</label>
+                @Html.TextBoxFor(model => model.Product.UnitsInStock, new { @class = "form-control", @type= "number" })
+                @Html.ValidationMessageFor(model => model.Product.UnitsInStock, "", new { @class = "text-danger" })
+            </div>
+
+            
+            <div class="invalid-feedback">@Html.ValidationMessage("ProductException")</div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Yeni Ürün Ekle</button>
+        }
+    </div>
+</div>
+

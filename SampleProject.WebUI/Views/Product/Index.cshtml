@@ -1,0 +1,44 @@
+﻿@model SampleProject.WebUI.Models.ProductListViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    
+}
+
+@if(Model.Products.Count> 0)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Ürün Adı</th>
+            <th scope="col">Fiyat</th>
+            <th scope="col">Stok Adeti</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.UnitsInStock</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <section class="jumbotron text-center">
+        <div class="container">
+            <p class="lead text-muted">Sistemde tanımlı hiç ürün bulunamadı.</p>
+            <p>
+                <a href="~/Product/Create" class="btn btn-secondary my-2">Yeni Ürün Eklemek İçin Tıklayın</a>
+            </p>
+        </div>
+    </section>
+}
+
